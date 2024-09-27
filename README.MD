@@ -7,4 +7,5 @@
 #7 User Routes & Register Endpoint
 #8 Register Validation
 #9 Auth Routes & Login Endpoint
-#10 Register Page, Form Validation
+#10 Register Page, Form Validation FE
+#11 API Client Setup
