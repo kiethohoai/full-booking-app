@@ -2,6 +2,9 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+const morgan = require('morgan');
+
+import userRoutes from './routes/userRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 7001;
@@ -10,7 +13,6 @@ const PORT = process.env.PORT || 7001;
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
   console.log('🚀DB Connected');
   console.log('🚀ENV', process.env.NODE_ENV);
-
 });
 
 // Middlewares secury
@@ -20,9 +22,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/test', async (req: Request, res: Response) => {
-  res.json({ message: 'Hello From Expres Endpoint!' });
-});
+// Morgan Logger
+app.use(morgan('dev'));
+
+// Routes
+app.use('/api/users', userRoutes);
 
 // Start Server
 app.listen(PORT, () => {

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 export type UserType = {
   _id: string;
@@ -18,6 +19,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+});
+
+// Middleware Hash User Password Before Save to DB
+userSchema.pre('validate', async function (next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
+  next();
 });
 
 const User = mongoose.model<UserType>('User', userSchema);
