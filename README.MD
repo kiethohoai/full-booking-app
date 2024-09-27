@@ -3,3 +3,4 @@
 #3 MongoDB Setup
 #4 Tailwind Setup
 #5 Adding Layout - Header Hero Footer & Main
+#6 Models & Create User Model
