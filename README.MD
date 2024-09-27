@@ -7,3 +7,4 @@
 #7 User Routes & Register Endpoint
 #8 Register Validation
 #9 Auth Routes & Login Endpoint
+#10 Register Page, Form Validation
