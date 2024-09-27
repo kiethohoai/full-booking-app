@@ -6,3 +6,4 @@
 #6 Models & Create User Model
 #7 User Routes & Register Endpoint
 #8 Register Validation
+#9 Auth Routes & Login Endpoint

@@ -5,6 +5,7 @@ import 'dotenv/config';
 const morgan = require('morgan');
 
 import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRotes';
 
 const app = express();
 const PORT = process.env.PORT || 7001;
@@ -27,6 +28,7 @@ app.use(morgan('dev'));
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 
 // Start Server
 app.listen(PORT, () => {
