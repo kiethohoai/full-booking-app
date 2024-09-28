@@ -9,3 +9,5 @@
 #9 Auth Routes & Login Endpoint
 #10 Register Page, Form Validation FE
 #11 API Client Setup
+#12 React Query Fetch, Request, Handle Error Register
+2 17 10
