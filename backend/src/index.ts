@@ -3,12 +3,15 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 const morgan = require('morgan');
+import cookieParser from 'cookie-parser';
 
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRotes';
 
 const app = express();
 const PORT = process.env.PORT || 7001;
+
+app.use(cookieParser());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {

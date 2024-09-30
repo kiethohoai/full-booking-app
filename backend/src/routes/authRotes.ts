@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import express, { Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
 import User from '../models/userModel';
+import vertifyToken from '../middleware/auth';
 
 const router = express.Router();
 
@@ -53,6 +54,17 @@ router.post(
       console.log(`🚀error at /login =>`, error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
+  },
+);
+
+router.get(
+  '/validate-token',
+  vertifyToken,
+  async (req: Request, res: Response) => {
+    res.status(200).json({
+      userId: req.userId,
+      message: 'Token Verified',
+    });
   },
 );
 

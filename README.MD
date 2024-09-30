@@ -14,3 +14,4 @@
 #14 Toast Component Design & Setup
 #15 Testing Toast Component With Register User
 #16 Cors Setup allow FE Access To BE
+17 validate-token Endpoint & VertifyToken Middleware
