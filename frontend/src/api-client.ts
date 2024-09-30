@@ -54,3 +54,17 @@ export const validateToken = async () => {
 
   return await response.json();
 };
+
+// todo signOut
+export const signOut = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Logout Failed');
+  }
+
+  return await response.json();
+};
