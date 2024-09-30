@@ -9,6 +9,7 @@ export const register = async (formData: RegisterFormData) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
+    credentials: 'include',
   });
 
   const responeBody = await response.json();

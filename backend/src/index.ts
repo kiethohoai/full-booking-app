@@ -17,7 +17,12 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
 });
 
 // Middlewares secury
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FONTEND_URL as string,
+    credentials: true,
+  }),
+);
 
 // Body Parser
 app.use(express.json());

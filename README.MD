@@ -13,3 +13,4 @@
 #13 App Context API Setup with Toast Notification
 #14 Toast Component Design & Setup
 #15 Testing Toast Component With Register User
+#16 Cors Setup allow FE Access To BE
