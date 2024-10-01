@@ -9,6 +9,7 @@ import { v2 as cloudinary } from 'cloudinary';
 
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRotes';
+import hotelRoutes from './routes/hotelRoutes';
 
 // Configuration Cloudinary
 cloudinary.config({
@@ -48,6 +49,7 @@ app.use(morgan('dev'));
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/my-hotels', hotelRoutes);
 
 // Start Server
 app.listen(PORT, () => {
