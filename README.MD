@@ -29,4 +29,4 @@
 +35.157.117.28
 
 26 DEPLOY TO RENDER & FIX WEB TITLE
-
+27 Cloundinary Setup
