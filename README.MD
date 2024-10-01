@@ -21,3 +21,4 @@
 21 Sign Out Features
 22 Style All Button
 23 SETUP TEST DATABASE FROM MONGODB
+24 Automated Testing & Auth Testing
