@@ -22,3 +22,8 @@
 22 Style All Button
 23 SETUP TEST DATABASE FROM MONGODB
 24 Automated Testing & Auth Testing
+25 MONGODB SECURITY SETTING
++Render.com IPs to add to MongoDB:
++3.75.158.163
++3.125.183.140
++35.157.117.28
