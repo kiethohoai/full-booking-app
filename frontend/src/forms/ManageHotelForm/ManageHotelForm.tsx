@@ -3,6 +3,7 @@ import DetailsSection from './DetailsSection';
 import TypeSection from './TypeSection';
 import FacilitiesSection from './FacilitiesSection';
 import GuestsSection from './GuestsSection';
+import ImagesSection from './ImagesSection';
 
 export type HotelFormData = {
   name: string;
@@ -20,6 +21,12 @@ export type HotelFormData = {
 
 const ManageHotelForm = () => {
   const formMethods = useForm<HotelFormData>();
+  const { handleSubmit } = formMethods;
+
+  const onSubmit = handleSubmit((formData: HotelFormData) => {
+    // Create new FormData Object & Call API
+    console.log(`🚀  formData =>`, formData);
+  });
 
   return (
     <FormProvider {...formMethods}>
@@ -28,6 +35,16 @@ const ManageHotelForm = () => {
         <TypeSection />
         <FacilitiesSection />
         <GuestsSection />
+        <ImagesSection />
+        <span className="flex justify-end">
+          <button
+            type="submit"
+            className="text-white bg-blue-600 px-4 py-2 rounded-sm hover:bg-blue-500 text-xl"
+            onClick={onSubmit}
+          >
+            Save
+          </button>
+        </span>
       </form>
     </FormProvider>
   );

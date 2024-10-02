@@ -36,3 +36,4 @@ Fix Responsive Design
 30 Type Section (ManageHotelForm)
 31 Facilities Section (ManageHotelForm)
 32 GuestsSection (ManageHotelForm)
+33 ImagesSection (ManageHotelForm)
