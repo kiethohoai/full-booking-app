@@ -34,3 +34,4 @@
 29 Create Hotel Form - Page Hotel, ManageHotelForm -> DetailSection
 Fix Responsive Design
 30 Type Section (ManageHotelForm)
+31 Facilities Section (ManageHotelForm)
