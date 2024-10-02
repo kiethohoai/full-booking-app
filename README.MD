@@ -31,3 +31,4 @@
 26 DEPLOY TO RENDER & FIX WEB TITLE
 27 Cloundinary Setup
 28 Create Hotel API + Hotel Model
+29 Create Hotel Form - Page Hotel, ManageHotelForm -> DetailSection
