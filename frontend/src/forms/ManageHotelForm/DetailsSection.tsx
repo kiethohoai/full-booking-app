@@ -67,9 +67,7 @@ const DetailsSection = () => {
           {...register('description', {
             required: 'This field is required',
           })}
-        >
-          {' '}
-        </textarea>
+        ></textarea>
         {errors.description && (
           <span className="font-bold text-red-500">
             {errors.description.message}
@@ -98,7 +96,7 @@ const DetailsSection = () => {
         Star Rating
         <select
           {...register('startRating', { required: 'This field is required' })}
-          className='border rounded w-full py-1 px-2 font-normal text-gray-700'
+          className="border rounded w-full py-1 px-2 font-normal text-gray-700"
         >
           <option value="" className="text-sm font-bold">
             Select as Rating
