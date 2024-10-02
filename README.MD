@@ -33,3 +33,4 @@
 28 Create Hotel API + Hotel Model
 29 Create Hotel Form - Page Hotel, ManageHotelForm -> DetailSection
 Fix Responsive Design
+30 Type Section (ManageHotelForm)
