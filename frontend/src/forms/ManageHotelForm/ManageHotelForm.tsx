@@ -14,23 +14,56 @@ export type HotelFormData = {
   pricePerNight: number;
   startRating: number;
   facilities: string[];
-  imageUrls: FileList;
+  imageFiles: FileList;
   adultCount: number;
   childCount: number;
 };
 
-const ManageHotelForm = () => {
+type Props = {
+  onSave: (hotelFormData: FormData) => void;
+  isLoading: boolean;
+};
+
+const ManageHotelForm = ({ onSave, isLoading }: Props) => {
   const formMethods = useForm<HotelFormData>();
   const { handleSubmit } = formMethods;
 
-  const onSubmit = handleSubmit((formData: HotelFormData) => {
+  const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     // Create new FormData Object & Call API
-    console.log(`🚀  formData =>`, formData);
+    const formData = new FormData();
+
+    formData.append('name', formDataJson.name);
+    formData.append('city', formDataJson.city);
+    formData.append('country', formDataJson.country);
+    formData.append('description', formDataJson.description);
+    formData.append('type', formDataJson.type);
+    formData.append('pricePerNight', formDataJson.pricePerNight.toString());
+    formData.append('startRating', formDataJson.startRating.toString());
+    formData.append('adultCount', formDataJson.adultCount.toString());
+    formData.append('childCount', formDataJson.childCount.toString());
+
+    formDataJson.facilities.forEach((facility, index) => {
+      formData.append(`facilities[${index}]`, facility);
+    });
+
+    Array.from(formDataJson.imageFiles).forEach((imageFile, index) => {
+      formData.append(`imageFiles[${index}]`, imageFile);
+    });
+
+    // Check
+
+    // Call API
+    onSave(formData);
   });
 
   return (
     <FormProvider {...formMethods}>
-      <form className="flex flex-col gap-10">
+      <form
+        className="flex flex-col gap-10"
+        method="POST"
+        encType="multipart/form-data"
+        onSubmit={onSubmit}
+      >
         <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
@@ -39,10 +72,11 @@ const ManageHotelForm = () => {
         <span className="flex justify-end">
           <button
             type="submit"
-            className="text-white bg-blue-600 px-4 py-2 rounded-sm hover:bg-blue-500 text-xl"
+            className="text-white bg-blue-600 px-4 py-2 rounded-sm hover:bg-blue-500 text-xl disabled:bg-gray-500"
             onClick={onSubmit}
+            disabled={isLoading}
           >
-            Save
+            {isLoading ? 'Saving...' : 'Save'}
           </button>
         </span>
       </form>

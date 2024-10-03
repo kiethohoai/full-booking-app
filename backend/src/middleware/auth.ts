@@ -18,7 +18,8 @@ const vertifyToken = (req: Request, res: Response, next: NextFunction): any => {
 
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY as string);
-    req.userId = (decode as JwtPayload).userId;
+    req.userId = (decode as JwtPayload)._id;
+
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Unauthorized' });

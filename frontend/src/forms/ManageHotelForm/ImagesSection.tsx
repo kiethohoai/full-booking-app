@@ -12,10 +12,10 @@ const ImagesSection = () => {
       <div className="flex flex-col gap-4 border rounded p-4">
         <input
           type="file"
-          multiple //User can upload multiple images
-          accept="image/*" //User only upload images, the other files are not accepted
+          multiple
+          accept="image/*"
           className="w-full text-gray-700 font-normal"
-          {...register('imageUrls', {
+          {...register('imageFiles', {
             validate: (imageFiles) => {
               const totalFiles = imageFiles.length;
               if (totalFiles === 0) return 'At least one image is required';
@@ -25,9 +25,9 @@ const ImagesSection = () => {
           })}
         />
       </div>
-      {errors.imageUrls && (
+      {errors.imageFiles && (
         <span className="font-bold text-red-500">
-          {errors.imageUrls.message}
+          {errors.imageFiles.message}
         </span>
       )}
     </div>
