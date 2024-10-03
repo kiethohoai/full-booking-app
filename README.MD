@@ -38,3 +38,4 @@ Fix Responsive Design
 32 GuestsSection (ManageHotelForm)
 33 ImagesSection (ManageHotelForm)
 34 Fetch, Create API CreateHotel FE
+35 Get All Hotels Endpoint BE & FetchMyHotels FE
