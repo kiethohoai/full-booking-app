@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
-import Hotel, { HotelType } from '../models/hotelModel';
+import Hotel from '../models/hotelModel';
 import vertifyToken from '../middleware/auth';
 import { body } from 'express-validator';
+import { HotelType } from '../shared/types';
 
 const router = express.Router();
 

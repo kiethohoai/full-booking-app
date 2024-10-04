@@ -41,3 +41,4 @@ Fix Responsive Design
 35 Get All Hotels Endpoint BE & FetchMyHotels FE
 36 MyHotels Page UI + React Icons
 37 Fix Mongoose Module
+38 SHARE HotelType

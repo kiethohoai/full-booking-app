@@ -29,8 +29,6 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
   console.log('🚀ENV', process.env.NODE_ENV);
 });
 
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-
 // Middlewares secury
 app.use(
   cors({
@@ -38,6 +36,9 @@ app.use(
     credentials: true,
   }),
 );
+
+// todo Connect to FE
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 // Body Parser
 app.use(express.json());
