@@ -39,3 +39,4 @@ Fix Responsive Design
 33 ImagesSection (ManageHotelForm)
 34 Fetch, Create API CreateHotel FE
 35 Get All Hotels Endpoint BE & FetchMyHotels FE
+36 MyHotels Page UI + React Icons
