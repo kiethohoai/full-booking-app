@@ -93,5 +93,20 @@ router.get('/', vertifyToken, async (req: Request, res: Response) => {
   }
 });
 
+// todo Get Single Hotel (Detail Hotel)
+router.get('/:id', vertifyToken, async (req: Request, res: Response) => {
+  const id = req.params.id.toString();
+  try {
+    const hotel = await Hotel.findById({
+      _id: id,
+      userId: req.userId,
+    });
+
+    res.json(hotel);
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+});
+
 // Export router
 export default router;
