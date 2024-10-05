@@ -16,13 +16,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    search.saveSearchValues(
-      destination,
-      checkIn,
-      checkOut,
-      adultCount,
-      childCount,
-    );
+    search.saveSearchValues(destination, checkIn, checkOut, adultCount, childCount);
     navigate('/search');
   };
 

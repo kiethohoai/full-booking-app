@@ -1,4 +1,4 @@
-import { HotelType } from './../../backend/src/shared/types';
+import { HotelSearchRespone, HotelType } from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
 
@@ -115,18 +115,47 @@ export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
 
 // todo updateMyHotelById
 export const updateMyHotelById = async (hotelFormData: FormData) => {
-  const res = await fetch(
-    `${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`,
-    {
-      method: 'PUT',
-      credentials: 'include',
-      body: hotelFormData,
-    },
-  );
+  const res = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, {
+    method: 'PUT',
+    credentials: 'include',
+    body: hotelFormData,
+  });
 
   if (!res.ok) {
     throw new Error('Fail to update hotel');
   }
 
   return await res.json();
+};
+
+// todo SearchParams Type
+export type SearchParams = {
+  destination?: string;
+  checkIn?: string;
+  checkOut?: string;
+  adultCount?: string;
+  childCount?: string;
+  page?: string;
+};
+
+// todo searchHotels
+export const searchHotels = async (searchParams: SearchParams): Promise<HotelSearchRespone> => {
+  const queryParams = new URLSearchParams();
+  queryParams.append('destination', searchParams.destination || '');
+  queryParams.append('checkIn', searchParams.checkIn || '');
+  queryParams.append('checkOut', searchParams.checkOut || '');
+  queryParams.append('adultCount', searchParams.adultCount || '');
+  queryParams.append('childCount', searchParams.childCount || '');
+  queryParams.append('page', searchParams.page || '');
+
+  const respone = await fetch(`${API_BASE_URL}/api/hotels/search?${queryParams}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!respone.ok) {
+    throw new Error('Fail to fetch hotels');
+  }
+
+  return await respone.json();
 };
