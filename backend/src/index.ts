@@ -10,6 +10,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRotes';
 import hotelRoutes from './routes/hotelRoutes';
+import hotelSearchRoutes from './routes/hotelSearchRoutes';
 
 // Configuration Cloudinary
 cloudinary.config({
@@ -51,6 +52,7 @@ app.use(morgan('dev'));
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/my-hotels', hotelRoutes);
+app.use('/api/hotels', hotelSearchRoutes);
 
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));

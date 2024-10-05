@@ -45,3 +45,4 @@ Fix Responsive Design
 39 Get Single Hotel Endpoint BE & fetchMyHotelById FE
 40 Edit Hotel Page (fetch, logic)
 41 Edit My Hotel Final
+42 Search API (BE)
