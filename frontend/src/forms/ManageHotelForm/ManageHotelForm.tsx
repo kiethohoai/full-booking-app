@@ -17,6 +17,7 @@ export type HotelFormData = {
   startRating: number;
   facilities: string[];
   imageFiles: FileList;
+  imageUrls: string[];
   adultCount: number;
   childCount: number;
 };
@@ -24,7 +25,7 @@ export type HotelFormData = {
 type Props = {
   onSave: (hotelFormData: FormData) => void;
   isLoading: boolean;
-  hotel: HotelType;
+  hotel?: HotelType;
 };
 
 const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
@@ -38,7 +39,9 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     // Create new FormData Object & Call API
     const formData = new FormData();
-
+    if (hotel) {
+      formData.append('hotelId', hotel._id);
+    }
     formData.append('name', formDataJson.name);
     formData.append('city', formDataJson.city);
     formData.append('country', formDataJson.country);
@@ -49,6 +52,12 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
     formData.append('adultCount', formDataJson.adultCount.toString());
     formData.append('childCount', formDataJson.childCount.toString());
 
+    if (formDataJson.imageUrls) {
+      formDataJson.imageUrls.forEach((imageUrl, index) => {
+        formData.append(`imageUrls[${index}]`, imageUrl);
+      });
+    }
+
     formDataJson.facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);
     });
@@ -56,8 +65,6 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
     Array.from(formDataJson.imageFiles).forEach((imageFile, index) => {
       formData.append(`imageFiles[${index}]`, imageFile);
     });
-
-    // Check
 
     // Call API
     onSave(formData);

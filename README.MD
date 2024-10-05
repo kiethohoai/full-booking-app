@@ -43,4 +43,5 @@ Fix Responsive Design
 37 Fix Mongoose Module
 38 SHARE HotelType
 39 Get Single Hotel Endpoint BE & fetchMyHotelById FE
-40 Edit Hotel Page (fetch, logic) 
+40 Edit Hotel Page (fetch, logic)
+41 Edit My Hotel Final
