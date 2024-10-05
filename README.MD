@@ -47,3 +47,4 @@ Fix Responsive Design
 41 Edit My Hotel Final
 42 Search API (BE)
 43 Search Context
+44 Search Bar
