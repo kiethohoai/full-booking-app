@@ -48,3 +48,5 @@ Fix Responsive Design
 42 Search API (BE)
 43 Search Context
 44 Search Bar
+45 Search Page Fetch Hotel
+46 Search Result Card (UI & Display Data)
