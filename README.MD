@@ -50,3 +50,4 @@ Fix Responsive Design
 44 Search Bar
 45 Search Page Fetch Hotel
 46 Search Result Card (UI & Display Data)
+47 Search Page PAGINATION
