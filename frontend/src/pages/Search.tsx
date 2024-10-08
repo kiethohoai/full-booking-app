@@ -7,7 +7,6 @@ import Pagination from '../components/Pagination';
 
 const Search = () => {
   const search = useSearchContext();
-
   const [page, setPage] = useState<number>(1);
 
   const searchParams = {

@@ -52,3 +52,4 @@ Fix Responsive Design
 46 Search Result Card (UI & Display Data)
 47 Search Page PAGINATION
 48 Search Page (Search Query)
+49 Constructor Search Query (sort, filter)
