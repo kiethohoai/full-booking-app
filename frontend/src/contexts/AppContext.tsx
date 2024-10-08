@@ -15,14 +15,10 @@ type AppContext = {
   isLoggedIn: boolean;
 };
 
-const AppContext = React.createContext<AppContext | undefined>(undefined);
+export const AppContext = React.createContext<AppContext | undefined>(undefined);
 
 // AppContextProvider
-export const AppContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
   const { isError } = useQuery('validateToken', apiClient.validateToken, {
     retry: false, //failed queries will not retry by default.
@@ -39,11 +35,7 @@ export const AppContextProvider = ({
       }}
     >
       {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(undefined)}
-        />
+        <Toast message={toast.message} type={toast.type} onClose={() => setToast(undefined)} />
       )}
       {children}
     </AppContext.Provider>
@@ -51,10 +43,10 @@ export const AppContextProvider = ({
 };
 
 // useAppContext
-export const useAppContext = () => {
-  const context = React.useContext(AppContext);
-  if (context === undefined) {
-    throw new Error('useAppContext must be used within a AppContextProvider');
-  }
-  return context;
-};
+// export const useAppContext = () => {
+//   const context = React.useContext(AppContext);
+//   if (context === undefined) {
+//     throw new Error('useAppContext must be used within a AppContextProvider');
+//   }
+//   return context;
+// };

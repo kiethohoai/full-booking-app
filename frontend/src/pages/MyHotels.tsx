@@ -1,24 +1,20 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { useAppContext } from '../contexts/AppContext';
 import * as apiClient from '../api-client';
 import { BsBuilding, BsMap } from 'react-icons/bs';
 import { BiHotel, BiMoney, BiStar } from 'react-icons/bi';
+import { useAppContext } from '../contexts/useAppContext';
 
 const MyHotels = () => {
   const { showToast } = useAppContext();
-  const { data: hotelData } = useQuery(
-    'fetchMyHotels',
-    apiClient.fetchMyHotels,
-    {
-      onError: (error: Error) => {
-        showToast({
-          message: error.message,
-          type: 'ERROR',
-        });
-      },
+  const { data: hotelData } = useQuery('fetchMyHotels', apiClient.fetchMyHotels, {
+    onError: (error: Error) => {
+      showToast({
+        message: error.message,
+        type: 'ERROR',
+      });
     },
-  );
+  });
 
   if (!hotelData) {
     return <span>No Hotels Found!</span>;
@@ -62,7 +58,7 @@ const MyHotels = () => {
               </div>
               <div className="border border-slate-300 rounded-sm p-3 flex items-center gap-2">
                 <BiStar />
-                {hotel.startRating} Star Rating
+                {hotel.starRating} Star Rating
               </div>
             </div>
             <span className="flex justify-end">

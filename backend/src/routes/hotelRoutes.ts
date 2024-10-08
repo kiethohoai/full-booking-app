@@ -44,10 +44,10 @@ router.post(
       .isNumeric()
       .withMessage('PricePerNight is required and must be a number'),
 
-    body('startRating')
+    body('starRating')
       .notEmpty()
       .isNumeric()
-      .withMessage('StartRating is required and must be a number'),
+      .withMessage('StarRating is required and must be a number'),
   ],
   upload.any(),
   // upload.array('imageFiles', 6),

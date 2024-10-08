@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import * as apiClient from '../api-client';
-import { useAppContext } from '../contexts/AppContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAppContext } from '../contexts/useAppContext';
 
 export type SignInFormData = {
   email: string;
@@ -62,9 +62,7 @@ const SignIn = () => {
             },
           })}
         />
-        {errors.email && (
-          <span className="font-bold text-red-500">{errors.email.message}</span>
-        )}
+        {errors.email && <span className="font-bold text-red-500">{errors.email.message}</span>}
       </label>
 
       <label className="text-gray-700 text-sm font-bold flex-1">
@@ -81,9 +79,7 @@ const SignIn = () => {
           })}
         />
         {errors.password && (
-          <span className="font-bold text-red-500">
-            {errors.password.message}
-          </span>
+          <span className="font-bold text-red-500">{errors.password.message}</span>
         )}
       </label>
 

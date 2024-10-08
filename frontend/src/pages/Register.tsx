@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import * as apiClient from '../api-client';
-import { useAppContext } from '../contexts/AppContext';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../contexts/useAppContext';
 
 export type RegisterFormData = {
   firstName: string;
@@ -65,9 +65,7 @@ const Register = () => {
             })}
           />
           {errors.firstName && (
-            <span className="font-bold text-red-500">
-              {errors.firstName.message}
-            </span>
+            <span className="font-bold text-red-500">{errors.firstName.message}</span>
           )}
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
@@ -80,9 +78,7 @@ const Register = () => {
             })}
           />
           {errors.lastName && (
-            <span className="font-bold text-red-500">
-              {errors.lastName.message}
-            </span>
+            <span className="font-bold text-red-500">{errors.lastName.message}</span>
           )}
         </label>
       </div>
@@ -100,9 +96,7 @@ const Register = () => {
             },
           })}
         />
-        {errors.email && (
-          <span className="font-bold text-red-500">{errors.email.message}</span>
-        )}
+        {errors.email && <span className="font-bold text-red-500">{errors.email.message}</span>}
       </label>
 
       <label className="text-gray-700 text-sm font-bold flex-1">
@@ -119,9 +113,7 @@ const Register = () => {
           })}
         />
         {errors.password && (
-          <span className="font-bold text-red-500">
-            {errors.password.message}
-          </span>
+          <span className="font-bold text-red-500">{errors.password.message}</span>
         )}
       </label>
 
@@ -143,9 +135,7 @@ const Register = () => {
           })}
         />
         {errors.passwordConfirm && (
-          <span className="font-bold text-red-500">
-            {errors.passwordConfirm.message}
-          </span>
+          <span className="font-bold text-red-500">{errors.passwordConfirm.message}</span>
         )}
       </label>
 

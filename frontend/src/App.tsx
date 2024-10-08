@@ -8,10 +8,10 @@ import Layout from './layout/Layout';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import AddHotel from './pages/AddHotel';
-import { useAppContext } from './contexts/AppContext';
 import MyHotels from './pages/MyHotels';
 import EditHotel from './pages/EditHotel';
 import Search from './pages/Search';
+import { useAppContext } from './contexts/useAppContext';
 
 const App = () => {
   const { isLoggedIn } = useAppContext();

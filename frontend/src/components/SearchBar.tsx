@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useSearchContext } from '../contexts/SearchContext';
 import { MdTravelExplore } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
+import { useSearchContext } from '../contexts/useSearchContext';
 
 const SearchBar = () => {
   const search = useSearchContext();

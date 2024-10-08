@@ -17,15 +17,13 @@ type SearchContext = {
   ) => void;
 };
 
-const SearchContext = React.createContext<SearchContext | undefined>(undefined);
+export const SearchContext = React.createContext<SearchContext | undefined>(undefined);
 
 type SearchContextProviderProps = {
   children: React.ReactNode;
 };
 
-export const SearchContextProvider = ({
-  children,
-}: SearchContextProviderProps) => {
+export const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
   const [destination, setDestination] = useState<string>('');
   const [checkIn, setCheckIn] = useState<Date>(new Date());
   const [checkOut, setCheckOut] = useState<Date>(new Date());
@@ -66,12 +64,12 @@ export const SearchContextProvider = ({
   );
 };
 
-export const useSearchContext = () => {
-  const context = React.useContext(SearchContext);
-  if (context === undefined) {
-    throw new Error(
-      'useSearchContext must be used within a SearchContextProvider',
-    );
-  }
-  return context as SearchContext;
-};
+// export const useSearchContext = () => {
+//   const context = React.useContext(SearchContext);
+//   if (context === undefined) {
+//     throw new Error(
+//       'useSearchContext must be used within a SearchContextProvider',
+//     );
+//   }
+//   return context as SearchContext;
+// };

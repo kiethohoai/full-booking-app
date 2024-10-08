@@ -10,7 +10,7 @@ export type HotelType = {
   childCount: number;
   facilities: string[];
   pricePerNight: number;
-  startRating: number;
+  starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
 };

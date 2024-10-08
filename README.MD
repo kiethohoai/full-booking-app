@@ -53,3 +53,4 @@ Fix Responsive Design
 47 Search Page PAGINATION
 48 Search Page (Search Query)
 49 Constructor Search Query (sort, filter)
+50 Star Rating Filter + fix customHooks (useAppContext, useSearchContext)
