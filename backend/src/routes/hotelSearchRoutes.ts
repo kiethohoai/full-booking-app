@@ -9,7 +9,7 @@ router.get('/search', async (req: Request, res: Response) => {
     const query = constructSearchQuery(req.query);
 
     let sortOptions = {};
-    switch (req.query.sort) {
+    switch (req.query.sortOptions) {
       case 'starRating':
         sortOptions = { starRating: -1 };
         break;
@@ -19,14 +19,15 @@ router.get('/search', async (req: Request, res: Response) => {
       case 'pricePerNightDesc':
         sortOptions = { pricePerNight: -1 };
         break;
+      default:
+        sortOptions = { lastUpdated: -1 };
     }
-
+    
     const pageSize = 5;
     const pageNumber = parseInt(req.query.page ? req.query.page.toString() : '1');
 
     // skip documents
     const skip = (pageNumber - 1) * pageSize;
-
     const hotels = await Hotel.find(query).sort(sortOptions).skip(skip).limit(pageSize);
     const total = await Hotel.countDocuments(query);
 
@@ -41,7 +42,6 @@ router.get('/search', async (req: Request, res: Response) => {
 
     res.json(respone);
   } catch (error) {
-    console.log(`🚀  error =>`, error);
     res.status(500).json({ message: 'Something went wrong' });
   }
 });
