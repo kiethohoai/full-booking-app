@@ -1,4 +1,7 @@
-import { HotelSearchRespone, HotelType } from './../../backend/src/shared/types';
+import {
+  HotelSearchRespone,
+  HotelType,
+} from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
 
@@ -115,11 +118,14 @@ export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
 
 // todo updateMyHotelById
 export const updateMyHotelById = async (hotelFormData: FormData) => {
-  const res = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`, {
-    method: 'PUT',
-    credentials: 'include',
-    body: hotelFormData,
-  });
+  const res = await fetch(
+    `${API_BASE_URL}/api/my-hotels/${hotelFormData.get('hotelId')}`,
+    {
+      method: 'PUT',
+      credentials: 'include',
+      body: hotelFormData,
+    },
+  );
 
   if (!res.ok) {
     throw new Error('Fail to update hotel');
@@ -145,7 +151,9 @@ export type SearchParams = {
 };
 
 // todo searchHotels
-export const searchHotels = async (searchParams: SearchParams): Promise<HotelSearchRespone> => {
+export const searchHotels = async (
+  searchParams: SearchParams,
+): Promise<HotelSearchRespone> => {
   const queryParams = new URLSearchParams();
   queryParams.append('destination', searchParams.destination || '');
   queryParams.append('checkIn', searchParams.checkIn || '');
@@ -167,10 +175,13 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
     queryParams.append('stars', star);
   });
 
-  const respone = await fetch(`${API_BASE_URL}/api/hotels/search?${queryParams}`, {
-    method: 'GET',
-    credentials: 'include',
-  });
+  const respone = await fetch(
+    `${API_BASE_URL}/api/hotels/search?${queryParams}`,
+    {
+      method: 'GET',
+      credentials: 'include',
+    },
+  );
 
   if (!respone.ok) {
     throw new Error('Fail to fetch hotels');
@@ -180,7 +191,7 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
 };
 
 // todo fetchHotelById
-export const fetchHotelById = async (hotelId: string) => {
+export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
   const respone = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`, {
     method: 'GET',
     credentials: 'include',

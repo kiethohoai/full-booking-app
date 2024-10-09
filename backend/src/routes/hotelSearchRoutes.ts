@@ -25,11 +25,16 @@ router.get('/search', async (req: Request, res: Response) => {
     }
 
     const pageSize = 5;
-    const pageNumber = parseInt(req.query.page ? req.query.page.toString() : '1');
+    const pageNumber = parseInt(
+      req.query.page ? req.query.page.toString() : '1',
+    );
 
     // skip documents
     const skip = (pageNumber - 1) * pageSize;
-    const hotels = await Hotel.find(query).sort(sortOptions).skip(skip).limit(pageSize);
+    const hotels = await Hotel.find(query)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(pageSize);
     const total = await Hotel.countDocuments(query);
 
     const respone: HotelSearchRespone = {
@@ -79,7 +84,9 @@ const constructSearchQuery = (queryParams: any) => {
 
   if (queryParams.types) {
     constructedQuery.type = {
-      $in: Array.isArray(queryParams.types) ? queryParams.types : [queryParams.types],
+      $in: Array.isArray(queryParams.types)
+        ? queryParams.types
+        : [queryParams.types],
     };
   }
 

@@ -56,3 +56,4 @@ Fix Responsive Design
 50 Star Rating Filter + fix customHooks (useAppContext, useSearchContext)
 51 Hotel Types, Facilities, Price Filter & Search Options
 52 Get Single Hotel By Id BE FE (Route & Fetch) Fix Error
+53 Detail Page (Detail Hotel, fetch, UI)
