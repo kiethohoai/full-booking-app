@@ -5,29 +5,6 @@ import { param, validationResult } from 'express-validator';
 
 const router = express.Router();
 
-// todo Get Single Hotel api/hotels/:id
-router.get(
-  '/:id',
-  [param('id').notEmpty().withMessage('Hotel ID is required')],
-  async (req: Request, res: Response): Promise<any> => {
-    // Check err from express-validator
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: errors.array() });
-    }
-
-    const id = req.params.id.toString();
-
-    try {
-      const hotel = await Hotel.findById(id);
-      res.status(200).json(hotel);
-    } catch (error) {
-      console.log(`🚀Error on get single hotel =>`, error);
-      res.status(500).json({ message: 'Error fetching hotels' });
-    }
-  },
-);
-
 router.get('/search', async (req: Request, res: Response) => {
   try {
     const query = constructSearchQuery(req.query);
@@ -123,4 +100,26 @@ const constructSearchQuery = (queryParams: any) => {
   return constructedQuery;
 };
 
+// todo Get Single Hotel (Detail Hotel)
+router.get(
+  '/:id',
+  [param('id').notEmpty().withMessage('Hotel ID is required')],
+  async (req: Request, res: Response): Promise<any> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array() });
+    }
+
+    try {
+      const id = req.params.id.toString();
+      const hotel = await Hotel.findById(id);
+      res.status(200).json(hotel);
+    } catch (error) {
+      console.log(`🚀Error getting a hotel =>`, error);
+      res.status(500).json({ message: 'Error fetching a hotel!' });
+    }
+  },
+);
+
+// export router
 export default router;

@@ -180,7 +180,7 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
 };
 
 // todo fetchHotelById
-export const fetHotelById = async (hotelId: string) => {
+export const fetchHotelById = async (hotelId: string) => {
   const respone = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`, {
     method: 'GET',
     credentials: 'include',
