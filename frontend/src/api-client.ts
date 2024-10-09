@@ -178,3 +178,17 @@ export const searchHotels = async (searchParams: SearchParams): Promise<HotelSea
 
   return await respone.json();
 };
+
+// todo fetchHotelById
+export const fetHotelById = async (hotelId: string) => {
+  const respone = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!respone.ok) {
+    throw new Error('Fail to fetch single hotel');
+  }
+
+  return await respone.json();
+};

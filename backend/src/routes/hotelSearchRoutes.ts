@@ -1,8 +1,32 @@
 import express, { Request, Response } from 'express';
 import Hotel from '../models/hotelModel';
 import { HotelSearchRespone } from '../shared/types';
+import { param, validationResult } from 'express-validator';
 
 const router = express.Router();
+
+// todo Get Single Hotel api/hotels/:id
+router.get(
+  '/:id',
+  [param('id').notEmpty().withMessage('Hotel ID is required')],
+  async (req: Request, res: Response): Promise<any> => {
+    // Check err from express-validator
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array() });
+    }
+
+    const id = req.params.id.toString();
+
+    try {
+      const hotel = await Hotel.findById(id);
+      res.status(200).json(hotel);
+    } catch (error) {
+      console.log(`🚀Error on get single hotel =>`, error);
+      res.status(500).json({ message: 'Error fetching hotels' });
+    }
+  },
+);
 
 router.get('/search', async (req: Request, res: Response) => {
   try {
@@ -22,7 +46,7 @@ router.get('/search', async (req: Request, res: Response) => {
       default:
         sortOptions = { lastUpdated: -1 };
     }
-    
+
     const pageSize = 5;
     const pageNumber = parseInt(req.query.page ? req.query.page.toString() : '1');
 
