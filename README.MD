@@ -58,3 +58,4 @@ Fix Responsive Design
 52 Get Single Hotel By Id BE FE (Route & Fetch) Fix Error
 53 Detail Page (Detail Hotel, fetch, UI)
 54 GuestInfoForm (of Detail Page)
+55 Fix Footer Text Margin
