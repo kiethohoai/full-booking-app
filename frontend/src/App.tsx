@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import Layout from './layout/Layout';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
@@ -8,6 +13,7 @@ import EditHotel from './pages/EditHotel';
 import Search from './pages/Search';
 import { useAppContext } from './contexts/useAppContext';
 import Detail from './pages/Detail';
+import Booking from './pages/Booking';
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -62,25 +68,37 @@ const App = () => {
         ></Route>
 
         {isLoggedIn && (
-          <Route
-            path="/add-hotel"
-            element={
-              <Layout>
-                <AddHotel />
-              </Layout>
-            }
-          ></Route>
-        )}
+          <>
+            {/* ADD HOTEL */}
+            <Route
+              path="/add-hotel"
+              element={
+                <Layout>
+                  <AddHotel />
+                </Layout>
+              }
+            ></Route>
 
-        {isLoggedIn && (
-          <Route
-            path="/edit-hotel/:hotelId"
-            element={
-              <Layout>
-                <EditHotel />
-              </Layout>
-            }
-          ></Route>
+            {/* EDIT HOTEL */}
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel />
+                </Layout>
+              }
+            ></Route>
+
+            {/* HOTEL BOOKING */}
+            <Route
+              path="/hotel/:hotelId/booking"
+              element={
+                <Layout>
+                  <Booking />
+                </Layout>
+              }
+            ></Route>
+          </>
         )}
 
         <Route

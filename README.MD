@@ -62,3 +62,4 @@ Fix Responsive Design
 56 Init state value from sessionStorage to SearchContext
 57 Save Search Values to SearchContext (SessionStorage)
 58 /me Route BE (api BE fetchCurrentUser) & fetchCurrentUser FE
+59 Booking Page & Booking Form & Confirm Your Details

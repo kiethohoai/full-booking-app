@@ -1,5 +1,18 @@
+import { useQuery } from 'react-query';
+import * as apiClient from '../api-client';
+import BookingForm from '../forms/BookingForm/BookingForm';
+
 const Booking = () => {
-  return <div>Booking</div>;
+  const { data: currentUser } = useQuery('fetCurrentUser', () =>
+    apiClient.fetchCurrentUser(),
+  );
+
+  return (
+    <div className="grid md:grid-cols-[1fr_2fr]">
+      <div className="bg-green-200">Your Booking Detail</div>
+      <div>{currentUser && <BookingForm currentUser={currentUser} />}</div>
+    </div>
+  );
 };
 
 export default Booking;

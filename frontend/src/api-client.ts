@@ -1,6 +1,7 @@
 import {
   HotelSearchRespone,
   HotelType,
+  UserType,
 } from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
@@ -8,7 +9,7 @@ import { SignInFormData } from './pages/SignIn';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 // todo fetchCurrentUser
-export const fetchCurrentUser = async () => {
+export const fetchCurrentUser = async (): Promise<UserType> => {
   const res = await fetch(`${API_BASE_URL}/api/users/me`, {
     method: 'GET',
     credentials: 'include',
