@@ -31,3 +31,9 @@ export type HotelSearchRespone = {
     pages: number;
   };
 };
+
+export type PaymentIntentRespone = {
+  paymentIntentId: string;
+  clientSecret: string;
+  totalCost: number;
+};
