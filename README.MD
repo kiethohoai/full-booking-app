@@ -65,3 +65,4 @@ Fix Responsive Design
 59 Booking Page & Booking Form & Confirm Your Details
 60 BookingDetailsSummary (Booking Page)
 61 Stripe Setup & Create Payment Intent Endpoint
+62 Booking API (BE)
