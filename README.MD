@@ -59,4 +59,5 @@ Fix Responsive Design
 53 Detail Page (Detail Hotel, fetch, UI)
 54 GuestInfoForm (of Detail Page)
 55 Fix Footer Text Margin
-56 Init state value from sessionStorage to SearchContext 
+56 Init state value from sessionStorage to SearchContext
+57 Save Search Values to SearchContext (SessionStorage)
