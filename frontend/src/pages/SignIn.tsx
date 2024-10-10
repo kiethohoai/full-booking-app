@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
 import * as apiClient from '../api-client';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../contexts/useAppContext';
 
 export type SignInFormData = {
@@ -12,6 +12,7 @@ export type SignInFormData = {
 const SignIn = () => {
   const { showToast } = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const queryClient = useQueryClient();
 
   const {
@@ -29,8 +30,8 @@ const SignIn = () => {
       });
 
       await queryClient.invalidateQueries('validateToken');
-      // Navigate Homepage
-      navigate('/');
+      // Navigate Homepage or goto Save Url from State (location state)
+      navigate(location.state?.from?.pathname || '/', { replace: true });
     },
     onError: (error: Error) => {
       // Show Toast
@@ -62,7 +63,9 @@ const SignIn = () => {
             },
           })}
         />
-        {errors.email && <span className="font-bold text-red-500">{errors.email.message}</span>}
+        {errors.email && (
+          <span className="font-bold text-red-500">{errors.email.message}</span>
+        )}
       </label>
 
       <label className="text-gray-700 text-sm font-bold flex-1">
@@ -79,7 +82,9 @@ const SignIn = () => {
           })}
         />
         {errors.password && (
-          <span className="font-bold text-red-500">{errors.password.message}</span>
+          <span className="font-bold text-red-500">
+            {errors.password.message}
+          </span>
         )}
       </label>
 
