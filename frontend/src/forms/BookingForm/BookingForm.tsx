@@ -22,7 +22,7 @@ const BookingForm = ({ currentUser }: Props) => {
 
   return (
     <form className="grid grid-cols-1 gap-5 border border-slate-300 rounded-lg p-4">
-      <h3 className="text-3xl font-bold">CONFIRM YOUR DETAILS</h3>
+      <h3 className="text-3xl font-bold text-center">CONFIRM YOUR DETAILS</h3>
       <div className="grid grid-cols-2 gap-6">
         <label className="text-sm text-gray-700 font-bold flex-1">
           First Name

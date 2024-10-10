@@ -63,3 +63,4 @@ Fix Responsive Design
 57 Save Search Values to SearchContext (SessionStorage)
 58 /me Route BE (api BE fetchCurrentUser) & fetchCurrentUser FE
 59 Booking Page & Booking Form & Confirm Your Details
+60 BookingDetailsSummary (Booking Page)
