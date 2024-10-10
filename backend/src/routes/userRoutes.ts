@@ -2,8 +2,29 @@ import express, { Request, Response } from 'express';
 import User from '../models/userModel';
 import jwt from 'jsonwebtoken';
 import { check, validationResult } from 'express-validator';
+import vertifyToken from '../middleware/auth';
 
 const router = express.Router();
+
+// todo /me endpoint for Confirm USER Booking
+router.get(
+  '/me',
+  vertifyToken,
+  async (req: Request, res: Response): Promise<any> => {
+    const userId = req.userId;
+
+    try {
+      const user = await User.findById(userId).select('-password');
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json({ user });
+    } catch (error) {
+      console.log(`🚀  error =>`, error);
+      res.status(500).json({ message: 'Something went wrong' });
+    }
+  },
+);
 
 router.post(
   '/register',

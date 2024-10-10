@@ -7,6 +7,20 @@ import { SignInFormData } from './pages/SignIn';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
+// todo fetchCurrentUser
+export const fetchCurrentUser = async () => {
+  const res = await fetch(`${API_BASE_URL}/api/users/me`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetching user!');
+  }
+
+  return await res.json();
+};
+
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
     method: 'POST',
