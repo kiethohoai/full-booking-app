@@ -8,8 +8,8 @@ import BookingDetailsSummary from '../components/BookingDetailsSummary';
 
 const Booking = () => {
   const [numberOfNights, setNumberOfNights] = useState<number>(0);
-  const search = useSearchContext();
   const { hotelId } = useParams();
+  const search = useSearchContext();
 
   const { data: currentUser } = useQuery('fetCurrentUser', () =>
     apiClient.fetchCurrentUser(),
@@ -25,9 +25,10 @@ const Booking = () => {
 
   useEffect(() => {
     if (search.checkIn && search.checkOut) {
-      const nights =
-        Math.abs(search.checkOut.getTime() - search.checkIn.getTime()) /
-        (1000 * 60 * 60 * 24);
+      const nights = Math.round(
+        (search.checkOut.getTime() - search.checkIn.getTime()) /
+          (1000 * 60 * 60 * 24),
+      );
       setNumberOfNights(nights);
     }
   }, [search.checkIn, search.checkOut]);
