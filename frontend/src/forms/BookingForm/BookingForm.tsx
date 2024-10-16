@@ -5,26 +5,68 @@ import {
 } from '../../../../backend/src/shared/types';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { StripeCardElement } from '@stripe/stripe-js';
+import { useSearchContext } from '../../contexts/useSearchContext';
+import { useParams } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import * as apiClient from '../../api-client';
+import { useAppContext } from '../../contexts/useAppContext';
 
 type Props = {
   currentUser: UserType;
   paymentIntent: PaymentIntentRespone;
 };
 
-type BookingFormData = {
+export type BookingFormData = {
   firstName: string;
   lastName: string;
   email: string;
+  adultCount: number;
+  childCount: number;
+  checkIn: string;
+  checkOut: string;
+  hotelId: string;
+  paymentIntentId: string;
+  totalCost: number;
 };
 
 const BookingForm = ({ currentUser, paymentIntent }: Props) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { register } = useForm<BookingFormData>({
+
+  const search = useSearchContext();
+  const { showToast } = useAppContext();
+  const { hotelId } = useParams();
+
+  const { mutate: bookRoom, isLoading } = useMutation(
+    apiClient.createRoomBooking,
+    {
+      onSuccess: () => {
+        showToast({
+          message: 'Room booked successfully',
+          type: 'SUCCESS',
+        });
+      },
+      onError: () => {
+        showToast({
+          message: 'Error booking room',
+          type: 'ERROR',
+        });
+      },
+    },
+  );
+
+  const { register, handleSubmit } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
       lastName: currentUser.lastName,
       email: currentUser.email,
+      adultCount: search.adultCount,
+      childCount: search.childCount,
+      checkIn: search.checkIn.toISOString(),
+      checkOut: search.checkOut.toISOString(),
+      hotelId: hotelId,
+      paymentIntentId: paymentIntent.paymentIntentId,
+      totalCost: paymentIntent.totalCost,
     },
   });
 
@@ -39,14 +81,17 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
     });
 
     if (result.paymentIntent?.status === 'succeeded') {
-      console.log('Payment succeeded');
       // Book the room
+      bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
     }
   };
 
   // Return
   return (
-    <form className="grid grid-cols-1 gap-5 border border-slate-300 rounded-lg p-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="grid grid-cols-1 gap-5 border border-slate-300 rounded-lg p-4"
+    >
       <h3 className="text-3xl font-bold text-center">CONFIRM YOUR DETAILS</h3>
       <div className="grid grid-cols-2 gap-6">
         <label className="text-sm text-gray-700 font-bold flex-1">
@@ -100,6 +145,16 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
           id="payment-element"
           className="border border-slate-300 rounded px-2 py-3"
         />
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          disabled={isLoading}
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-500"
+        >
+          {isLoading ? 'Saving...' : 'Confirm Booking'}
+        </button>
       </div>
     </form>
   );
