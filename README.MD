@@ -67,3 +67,4 @@ Fix Responsive Design
 61 Stripe Setup & Create Payment Intent Endpoint
 62 Booking API (BE)
 63 Booking API (BE) Check Fix Error
+64 Booking (BookingDetailSummary & BookingForm)

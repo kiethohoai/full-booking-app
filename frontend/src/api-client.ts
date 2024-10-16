@@ -1,6 +1,7 @@
 import {
   HotelSearchRespone,
   HotelType,
+  PaymentIntentRespone,
   UserType,
 } from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
@@ -214,6 +215,30 @@ export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
 
   if (!respone.ok) {
     throw new Error('Fail to fetch single hotel');
+  }
+
+  return await respone.json();
+};
+
+//todo createPaymentIntent
+export const createPaymentIntent = async (
+  hotelId: string,
+  numberOfNights: number,
+): Promise<PaymentIntentRespone> => {
+  const respone = await fetch(
+    `${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
+    {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({ numberOfNights }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+
+  if (!respone.ok) {
+    throw new Error('Error fetching payment intent');
   }
 
   return await respone.json();
